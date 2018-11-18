@@ -3,6 +3,7 @@ resources:
   type: git
   source:
     uri: ((ist.amazing-app.git.url))
+    private_key: ((ist.amazing-app.git.private_key))
     branch: master
 
 jobs:
