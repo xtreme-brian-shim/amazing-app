@@ -1,0 +1,14 @@
+resources:
+- name: amazing-app-git
+  type: git
+  source:
+    uri: ((ist.amazing-app.git.url))
+    branch: master
+
+jobs:
+- name: test-amazing-app
+  plan:
+    - get: amazing-app-git
+      trigger: true
+    - task: unit-test-amazing-app
+      file: amazing-app-git/ci/test.yml

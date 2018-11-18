@@ -1,0 +1,5 @@
+spring:
+  flyway:
+    locations: classpath:databases/migrations/
+  profiles:
+    active: local
