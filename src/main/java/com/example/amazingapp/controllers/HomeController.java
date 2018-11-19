@@ -10,7 +10,7 @@ public class HomeController {
     @GetMapping("/")
     public ResponseEntity getHomePage() {
         return ResponseEntity.ok()
-                .body("Home");
+                .body("Home 2");
     }
 
 }

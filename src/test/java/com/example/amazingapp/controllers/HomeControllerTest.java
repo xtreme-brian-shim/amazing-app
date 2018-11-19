@@ -21,6 +21,6 @@ public class HomeControllerTest {
     @Test
     public void testHomePage() throws Exception {
         mockMvc.perform(get("/")).andExpect(status().isOk());
-        mockMvc.perform(get("/")).andExpect(content().string("Home"));
+        mockMvc.perform(get("/")).andExpect(content().string("Home 2"));
     }
 }
