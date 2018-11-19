@@ -6,6 +6,16 @@ resources:
     private_key: ((ist.amazing-app.git.private_key))
     branch: master
 
+- name: cf-amazing-app
+  type: cf
+  source:
+    api: ((ist.cf.api))
+    username: ((ist.cf.username))
+    password: ((ist.cf.password))
+    organization: ((ist.cf.org))
+    space: ((ist.cf.space))
+    skip_cert_check: true
+
 jobs:
 - name: test-amazing-app
   plan:
@@ -13,3 +23,18 @@ jobs:
       trigger: true
     - task: unit-test-amazing-app
       file: amazing-app-git/ci/test.yml
+
+- name: deploy-amazing-app
+  plan:
+    - get: amazing-app-git
+      passed: [test-amazing-app]
+      trigger: true
+    - task: build
+      file: amazing-app-git/ci/build.yml
+      params:
+        route: ((ist.amazing-service.baseUrl))
+    - put: cf-amazing-app
+      params:
+        manifest: deploy/manifest.yml
+        path: deploy/*.jar
+        current_app_name: amazing-app-service

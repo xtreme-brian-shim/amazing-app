@@ -1,0 +1,10 @@
+---
+applications:
+- name: amazing-app
+  memory: 1GB
+  instances: 1
+  routes:
+    - route: [ROUTE]
+  buildpack: https://github.com/cloudfoundry/java-buildpack
+  env:
+    SPRING_PROFILES_ACTIVE : cloud
